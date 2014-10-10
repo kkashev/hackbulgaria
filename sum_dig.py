@@ -11,3 +11,4 @@ def main():
     print (sum_digits(-1120))
 
 if __name__ == '__main__':
+    main()
