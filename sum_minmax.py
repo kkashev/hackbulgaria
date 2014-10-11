@@ -3,14 +3,14 @@ def sum_of_min_and_max(arr):
     for num in arr:
         if num < min:
             min = num
-
-        elif num > max:
+        if num > max:
             max = num
 
-    return max + min
+    return min + max
 
 
 def main():
-    print sum_of_min_and_max([1, 2, 5, 10, 5])
+    print(sum_of_min_and_max([1, 12, 4, 3, 12, 15]))
+
 if __name__ == '__main__':
     main()
