@@ -12,10 +12,4 @@ def prepare_meal(number):
             res += "and "
         res += "eggs"
 
-    print(res)
-
-
-def main():
-    prepare_meal(45)
-if __name__ == '__main__':
-    main()
+    return(res)

@@ -7,10 +7,3 @@ def count_words(arr):
             res[word] = 1
 
     return res
-
-
-def main():
-    print(count_words(["apple", "banana", "apple", "pie"]))
-
-if __name__ == '__main__':
-    main()
