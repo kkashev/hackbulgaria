@@ -2,14 +2,13 @@ import sys
 
 
 def main():
-    for arg in sys.argv:
-        filename = arg
+    filename = sys.argv[1]
 
-        file = open(filename, "r")
+    file = open(filename, "r")
 
-        content = file.read()
-        print(content)
-        file.close()
+    content = file.read()
+    print(content)
+    file.close()
 
 if __name__ == '__main__':
     main()
