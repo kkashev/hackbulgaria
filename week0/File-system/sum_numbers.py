@@ -7,7 +7,7 @@ def main():
     file = open(filename, "r")
     content = file.read()
     numbers = list(content.split(" "))
-    numbers.remove(' ')
+    numbers.remove('')
     s = 0
     for number in numbers:
         s += int(number)
