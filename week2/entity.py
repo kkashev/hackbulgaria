@@ -35,3 +35,8 @@ class Entity:
 
     def equip_weapon(self, weapon):
         self.weapon = weapon
+
+    def attack(self):
+        if self.weapon is None:
+            return 0
+        return self.weapon.damage
