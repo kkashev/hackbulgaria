@@ -1,10 +1,29 @@
 import json
+from song import Song
+
+
+def load():
+    file_name = "data.txt"
+    file_read = open(file_name)
+    json_temp = json.load(file_read)
+    playlist1 = Playlist(json_temp['name'])
+    for song in json_temp["songs"]:
+        title = song['title']
+        artist = song['artist']
+        rating = song['rating']
+        bitrate = song['bitrate']
+        album = song['album']
+        length = song['length']
+        song1 = Song(title, artist, album, length, bitrate)
+        if rating is not None:
+            song1.rate(rating)
+        playlist1.add_song(song1)
+    return playlist1
 
 
 def sec_to_min(secs):
     m, s = divmod(secs, 60)
-    h, m = divmod(m, 60)
-    return "%d:%02d:%02d" % (h, m, s)
+    return "%02d:%02d" % (m, s)
 
 
 class Playlist:
@@ -48,9 +67,14 @@ class Playlist:
     def __str__(self):
         res = ""
         for song in self.playlist:
-            res = "{} {} - {}\n".format(song.artist, song.title, sec_to_min(song.length))
+            res += "{} {} - {}\n".format(song.artist, song.title, sec_to_min(song.length))
         return res
 
     def save(self, file_name):
-        with open('data.txt', 'w') as outfile:
-            json.dump({"name": "self.playlist", "songs":[{"title": "song.title", "artist":song.artist, "album": song.album, "rating": song.rating, "length": song.length}]})
+        songs = []
+
+        for song in self.playlist:
+            songs.append(song.__dict__)
+
+        with open(file_name, 'w') as outfile:
+            json.dump({"name": self.playlist, "songs": songs}, outfile)

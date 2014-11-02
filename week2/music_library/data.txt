@@ -1,0 +1,14 @@
+{"songs": 
+    [{"length": 10000, 
+    "title": "Title", 
+    "artist": "Gosho ot pochivka2", 
+    "bitrate": 128, 
+    "rating": null, 
+    "album": "Album"}, 
+    {"length": 20, 
+    "title": "Titleasd", 
+    "artist": "pochivka2", 
+    "bitrate": 28, 
+    "rating": null, 
+    "album": "albu"}], 
+"name": "self.playlist"}

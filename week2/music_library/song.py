@@ -2,7 +2,7 @@ class Song:
     MAX_RATING = 5
     MIN_RATING = 1
 
-    def __init__(self, title, artist, album, rating, length, bitrate):
+    def __init__(self, title, artist, album, length, bitrate):
         self.title = title
         self.artist = artist
         self.album = album
