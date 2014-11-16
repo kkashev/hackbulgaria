@@ -10,7 +10,7 @@ class Cinema:
     def start_up(self):
         self.conn = sqlite3.connect(self.database)
         self.cursor = self.conn.cursor()
-        self.cursor.execute('''PRAGMA foreign_keys = ON;''')
+        
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS
                             movies(id INTEGER PRIMARY KEY, name TEXT,rating REAL)''')
 
@@ -21,6 +21,7 @@ class Cinema:
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS
                             reservation(id INTEGER PRIMARY KEY, username TEXT, projection_id INTEGER,
                             row INTEGER, col INTEGER, FOREIGN KEY (projection_id) REFERENCES projections(id))''')
+        self.cursor.execute('''PRAGMA foreign_keys = ON;''')
 
     def close_db(self):
         self.conn.close()
