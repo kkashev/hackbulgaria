@@ -19,10 +19,9 @@ class Math_game():
             print(user_select)
             if (user_select == "start"):
                 username = input("Enter your name: ")
-                #self.add_player(username)
-                while True:
-                    self.randomizing_tasks()
-
+                while self.randomizing_tasks():
+                    pass
+                self.add_player(username)
                 break
             elif (user_select == "highscores"):
                 break
@@ -30,20 +29,20 @@ class Math_game():
                 print("Invalid command! Try again")
 
     def add_player(self, name):
-        player = Highscore(playername=name, score=self.right_answers)
+        player = Highscore(playername=name, score=self.right_answers*self.right_answers)
         self.session.add(player)
         self.session.commit()
 
     def randomizing_tasks(self):
-        chosen_task = random.randrange(1, 4)
+        chosen_task = random.randrange(1, 5)
         if (chosen_task == 1):
-            self.addition_task()
+            return(self.addition_task())
         if (chosen_task == 2):
-            self.substraction_task()
+            return(self.substraction_task())
         if (chosen_task == 3):
-            self.multiplication_task()
+            return(self.multiplication_task())
         if (chosen_task == 4):
-            self.exponentiation_task()
+            return(self.exponentiation_task())
 
     def addition_task(self):
         first_summand = random.randrange(0, 10)
@@ -51,7 +50,7 @@ class Math_game():
         self.answer = first_summand + second_summand
         print("{} + {} = ?".format(first_summand, second_summand))
         user_answer = input("Answer:")
-        self.check_answer(int(user_answer))
+        return(self.check_answer(int(user_answer)))
 
     def substraction_task(self):
         minuend = random.randrange(0, 10)
@@ -59,7 +58,7 @@ class Math_game():
         self.answer = minuend - subtrahend
         print("{} - {} = ?".format(minuend, subtrahend))
         user_answer = input("Answer:")
-        self.check_answer(int(user_answer))
+        return(self.check_answer(int(user_answer)))
 
     def multiplication_task(self):
         multiplicand = random.randrange(0, 10)
@@ -67,7 +66,7 @@ class Math_game():
         self.answer = multiplicand * multiplier
         print("{} * {} = ?".format(multiplicand, multiplier))
         user_answer = input("Answer:")
-        self.check_answer(int(user_answer))
+        return(self.check_answer(int(user_answer)))
 
     def exponentiation_task(self):
         base = random.randrange(0, 10)
@@ -75,19 +74,19 @@ class Math_game():
         self.answer = base ** exponent
         print("{} ^ {} = ?".format(base, exponent))
         user_answer = input("Answer:")
-        self.check_answer(int(user_answer))
+        return(self.check_answer(int(user_answer)))
 
     def check_answer(self, answer):
         if (self.answer == answer):
-            print("Correct, you earned 1 point")
+            print("Correct")
             self.right_answers += 1
-            return False
+            return True
         else:
             print("False")
-            return True
+            return False
 
     def show_result(self):
-        print("Your score is: {}".format(self.right_answers))
+        print("Your score is: {}".format(self.right_answers*self.right_answers))
 
 
 def main():
