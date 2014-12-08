@@ -1,6 +1,6 @@
 from connection import Base
 from sqlalchemy.orm import Session
-from highscores import Highscore
+from highscores import Player
 from sqlalchemy import create_engine
 import random
 
@@ -24,12 +24,13 @@ class Math_game():
                 self.add_player(username)
                 break
             elif (user_select == "highscores"):
+                self.get_top10()
                 break
             else:
                 print("Invalid command! Try again")
 
     def add_player(self, name):
-        player = Highscore(playername=name, score=self.right_answers*self.right_answers)
+        player = Player(playername=name, score=self.right_answers*self.right_answers)
         self.session.add(player)
         self.session.commit()
 
@@ -87,6 +88,11 @@ class Math_game():
 
     def show_result(self):
         print("Your score is: {}".format(self.right_answers*self.right_answers))
+
+    def get_top10(self):
+        print("Top 10\n")
+        for player in self.session.query(Player).order_by(Player.score.desc()).limit(10):
+            print(player)
 
 
 def main():
